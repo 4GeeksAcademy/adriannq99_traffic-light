@@ -1,24 +1,34 @@
-import logo from "./logo.svg";
+import { Badge, Button } from "react-bootstrap";
+
 import "./App.css";
+import { Luz } from "./components/luz";
+import { SwapButton } from "./components/button";
+
+import { useState } from "react";
+
+const colores = ["red", "yellow", "green"];
 
 function App() {
+  const [selectedColor, setColor] = useState("");
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Badge className="bg-black m-4 text-center">
+        {colores.map((color) => {
+          return (
+            <Luz
+              color={color}
+              colorSetter={setColor}
+              selectedColor={selectedColor}
+            />
+          );
+        })}
+        <SwapButton
+          colores={colores}
+          colorSetter={setColor}
+          selectedColor={selectedColor}
+        />
+      </Badge>
+    </>
   );
 }
 
